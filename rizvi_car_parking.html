@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rizvi Car Parking – Nasarpur, Sindh</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0d1f3c;
+    --navy2: #162a4e;
+    --gold: #f5a623;
+    --gold2: #ffc85a;
+    --red: #e8294a;
+    --white: #ffffff;
+    --offwhite: #f5f0e8;
+    --light: #d0e4f7;
+    --gray: #8a9ab5;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, #1e3a6e 0%, #0d1f3c 70%);
+    z-index: 0;
+  }
+
+  /* animated gold rings */
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(245,166,35,0.15);
+    animation: pulse-ring 6s ease-in-out infinite;
+  }
+  .ring:nth-child(1) { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 0s; }
+  .ring:nth-child(2) { width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 1s; }
+  .ring:nth-child(3) { width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 2s; }
+  .ring:nth-child(4) { width: 900px; height: 900px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 3s; }
+
+  @keyframes pulse-ring {
+    0%, 100% { opacity: 0.15; transform: translate(-50%,-50%) scale(1); }
+    50% { opacity: 0.35; transform: translate(-50%,-50%) scale(1.04); }
+  }
+
+  /* floating cars */
+  .float-car {
+    position: absolute;
+    font-size: 28px;
+    opacity: 0.07;
+    animation: float-drift 20s linear infinite;
+  }
+  .float-car:nth-child(5)  { top: 15%; left: 8%;  animation-duration: 22s; animation-delay: 0s; }
+  .float-car:nth-child(6)  { top: 70%; left: 5%;  animation-duration: 18s; animation-delay: 3s; }
+  .float-car:nth-child(7)  { top: 30%; right: 6%; animation-duration: 25s; animation-delay: 6s; }
+  .float-car:nth-child(8)  { top: 75%; right: 8%; animation-duration: 20s; animation-delay: 9s; }
+  .float-car:nth-child(9)  { top: 50%; left: 15%; animation-duration: 16s; animation-delay: 2s; }
+
+  @keyframes float-drift {
+    0%   { transform: translateY(0px) rotate(-5deg); }
+    50%  { transform: translateY(-30px) rotate(5deg); }
+    100% { transform: translateY(0px) rotate(-5deg); }
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 820px; }
+
+  .badge {
+    display: inline-block;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid rgba(245,166,35,0.4);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    animation: fade-up 1s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 9vw, 96px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    animation: fade-up 1s ease 0.2s both;
+  }
+
+  .hero h1 span { color: var(--gold); display: block; }
+
+  .hero-tagline {
+    margin-top: 24px;
+    font-size: clamp(14px, 2vw, 18px);
+    font-weight: 300;
+    color: var(--light);
+    letter-spacing: 0.5px;
+    line-height: 1.7;
+    animation: fade-up 1s ease 0.4s both;
+  }
+
+  .hero-cta {
+    margin-top: 44px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fade-up 1s ease 0.6s both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 14px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(245,166,35,0.35); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 14px 32px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.25);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-stats {
+    margin-top: 64px;
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fade-up 1s ease 0.8s both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-top: 4px; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.5;
+    animation: bounce 2s ease infinite;
+  }
+  .scroll-hint span { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+
+  .section-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 120px 20px;
+    background: var(--navy2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about::before {
+    content: 'P';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 400px;
+    font-weight: 900;
+    color: rgba(245,166,35,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .about h2 em { font-style: normal; color: var(--gold); }
+
+  .about p {
+    color: var(--light);
+    line-height: 1.85;
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+
+  .about-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(245,166,35,0.15);
+    border-radius: 16px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+  }
+
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(245,166,35,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .info-text { flex: 1; }
+  .info-text strong { display: block; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; }
+  .info-text span { font-size: 15px; color: var(--white); font-weight: 500; }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 120px 20px;
+    background: var(--navy);
+  }
+
+  .services-inner { max-width: 1100px; margin: 0 auto; }
+
+  .services-header { text-align: center; margin-bottom: 70px; }
+
+  .services h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  .services h2 em { font-style: normal; color: var(--gold); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 36px 32px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(245,166,35,0.06), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .service-card:hover { border-color: rgba(245,166,35,0.4); transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .service-card p {
+    color: var(--gray);
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .service-tag {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(245,166,35,0.1);
+    padding: 5px 12px;
+    border-radius: 4px;
+  }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 120px 20px;
+    background: linear-gradient(180deg, var(--navy2) 0%, var(--navy) 100%);
+  }
+
+  .features-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .features h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 40px;
+  }
+  .features h2 em { font-style: normal; color: var(--gold); }
+
+  .feature-list { display: flex; flex-direction: column; gap: 20px; }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    border-left: 3px solid var(--gold);
+    transition: all 0.3s ease;
+  }
+  .feature-item:hover { background: rgba(245,166,35,0.06); transform: translateX(6px); }
+  .feature-item span:first-child { font-size: 22px; }
+  .feature-item span:last-child { font-size: 15px; font-weight: 500; }
+
+  /* Big P display */
+  .big-p-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .p-circle {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy2), #0d1f3c);
+    border: 3px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 80px rgba(245,166,35,0.15), inset 0 0 40px rgba(245,166,35,0.05);
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%,100% { box-shadow: 0 0 60px rgba(245,166,35,0.15), inset 0 0 30px rgba(245,166,35,0.05); }
+    50%      { box-shadow: 0 0 100px rgba(245,166,35,0.3),  inset 0 0 60px rgba(245,166,35,0.1); }
+  }
+
+  .p-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 140px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  /* car under P */
+  .p-car {
+    font-size: 36px;
+    animation: car-bounce 2s ease-in-out infinite;
+  }
+  @keyframes car-bounce {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+  }
+
+  /* ── TEAM ── */
+  .team {
+    padding: 120px 20px;
+    background: var(--navy);
+  }
+
+  .team-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+
+  .team h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 900;
+    margin-bottom: 16px;
+  }
+  .team h2 em { font-style: normal; color: var(--gold); }
+  .team-sub { color: var(--gray); font-size: 16px; font-weight: 300; margin-bottom: 70px; }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .team-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 40px 28px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .team-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+  .team-card:hover { border-color: rgba(245,166,35,0.3); transform: translateY(-8px); }
+  .team-card:hover::after { transform: scaleX(1); }
+
+  .team-avatar {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(245,166,35,0.2), rgba(245,166,35,0.05));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 20px;
+    border: 2px solid rgba(245,166,35,0.3);
+  }
+
+  .team-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .team-role {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .team-card p {
+    color: var(--gray);
+    font-size: 13px;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 120px 20px;
+    background: var(--navy2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact::before {
+    content: '';
+    position: absolute;
+    bottom: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(245,166,35,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contact-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 900;
+    margin-bottom: 16px;
+  }
+  .contact h2 em { font-style: normal; color: var(--gold); }
+  .contact-sub { color: var(--gray); font-size: 16px; font-weight: 300; margin-bottom: 64px; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+
+  .contact-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 32px 24px;
+    transition: all 0.3s ease;
+  }
+  .contact-card:hover { border-color: rgba(245,166,35,0.35); background: rgba(245,166,35,0.04); transform: translateY(-4px); }
+  .contact-card-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+  .contact-card h4 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+  .contact-card p { font-size: 15px; font-weight: 600; color: var(--white); line-height: 1.6; }
+  .contact-card p.gold { color: var(--gold); }
+
+  .map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 16px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .map-btn:hover { background: var(--gold2); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(245,166,35,0.3); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080f1e;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(245,166,35,0.15);
+  }
+
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  footer .footer-logo span { color: var(--gold); }
+  footer p { color: var(--gray); font-size: 13px; font-weight: 300; margin-top: 8px; }
+  footer .footer-since {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245,166,35,0.5);
+  }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    border: none;
+    margin: 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .about-inner, .features-inner { grid-template-columns: 1fr; gap: 48px; }
+    .about::before { font-size: 200px; }
+    .p-circle { width: 240px; height: 240px; }
+    .p-letter { font-size: 100px; }
+    .hero-stats { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="float-car">🚗</div>
+  <div class="float-car">🚙</div>
+  <div class="float-car">🚕</div>
+  <div class="float-car">🚗</div>
+  <div class="float-car">🚙</div>
+
+  <div class="hero-content">
+    <div class="badge">✦ Nasarpur, District Tando Allahyar, Sindh ✦</div>
+    <h1>
+      Rizvi Car
+      <span>Parking</span>
+    </h1>
+    <p class="hero-tagline">
+      Secure, affordable, and convenient paid parking<br/>
+      for residents &amp; vehicle owners — open 24 hours, every day.
+    </p>
+    <div class="hero-cta">
+      <a href="https://maps.app.goo.gl/JJSvzHTPJKYR9AyTA" class="btn-primary" target="_blank">
+        📍 Find on Google Maps
+      </a>
+      <a href="tel:03022749121" class="btn-outline">
+        📞 Call Now
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">4+</span>
+        <span class="stat-label">Years Serving</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">24/7</span>
+        <span class="stat-label">Always Open</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Secure Facility</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">5★</span>
+        <span class="stat-label">Google Rated</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><rect x="6.5" y="1" width="3" height="3" rx="1.5" fill="white" opacity="0.7"/><path d="M8 8L8 22M8 22L3 17M8 22L13 17" stroke="white" stroke-width="1.5" stroke-opacity="0.5" stroke-linecap="round"/></svg>
+  </div>
+</section>
+
+<hr class="gold-divider"/>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section class="about">
+  <div class="about-inner">
+    <div class="reveal">
+      <span class="section-label">About Us</span>
+      <h2>Safe Parking,<br/><em>Peace of Mind</em></h2>
+      <p>Rizvi Car Parking was established in March 2021 to solve a real problem for the residents of Nasarpur — the lack of safe, accessible parking space for those without direct car access at home.</p>
+      <p>Located on Tando Allahyar Road alongside the Government Water Supply and Government Civil Hospital, Nasarpur, we offer both daily and monthly parking plans in a secure, well-lit facility accessible around the clock.</p>
+      <p>Whether you own a car and need a safe, dedicated space every day, we have a spot for you — managed with care and professionalism.</p>
+    </div>
+    <div class="about-card reveal">
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div class="info-text">
+          <strong>Address</strong>
+          <span>Tando Allahyar Road, alongside Govt. Water Supply &amp; Govt. Civil Hospital, Nasarpur 70010</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🕐</div>
+        <div class="info-text">
+          <strong>Opening Hours</strong>
+          <span>Open 24 Hours — Monday to Sunday</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📅</div>
+        <div class="info-text">
+          <strong>Established</strong>
+          <span>1 March 2021</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">💰</div>
+        <div class="info-text">
+          <strong>Payment</strong>
+          <span>Cash Only</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">♿</div>
+        <div class="info-text">
+          <strong>Accessibility</strong>
+          <span>Wheelchair-accessible car park &amp; entrance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="gold-divider"/>
+
+<!-- ══════════ SERVICES ══════════ -->
+<section class="services">
+  <div class="services-inner">
+    <div class="services-header reveal">
+      <span class="section-label">Our Services</span>
+      <h2>Everything You Need<br/><em>Under One Roof</em></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">📅</span>
+        <h3>Monthly Parking</h3>
+        <p>Ideal for residents who need a permanent, reliable space every single day. Register your vehicle and park with complete peace of mind.</p>
+        <span class="service-tag">Most Popular</span>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">☀️</span>
+        <h3>Daily Parking</h3>
+        <p>Flexible day-by-day parking for occasional visitors, travelers, or anyone needing short-term safe vehicle storage in Nasarpur.</p>
+        <span class="service-tag">Flexible</span>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🔒</span>
+        <h3>Secure Storage</h3>
+        <p>Your vehicle is in safe hands. Our facility is monitored and managed on-site to ensure your car is protected at all times.</p>
+        <span class="service-tag">24/7 Security</span>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">📋</span>
+        <h3>Vehicle Registration</h3>
+        <p>Every parked vehicle is officially registered and assigned a dedicated lot. No confusion, no clutter — just organised, professional parking.</p>
+        <span class="service-tag">Organised</span>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">♿</span>
+        <h3>Accessible Parking</h3>
+        <p>Fully wheelchair-accessible car park and entrance, ensuring ease of access for everyone visiting our facility.</p>
+        <span class="service-tag">Inclusive</span>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🚗</span>
+        <h3>Lot Assignment</h3>
+        <p>Each vehicle is assigned a specific parking lot on registration, so your spot is always ready and waiting for you on arrival.</p>
+        <span class="service-tag">Reserved</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="gold-divider"/>
+
+<!-- ══════════ FEATURES ══════════ -->
+<section class="features">
+  <div class="features-inner">
+    <div class="reveal">
+      <span class="section-label">Why Choose Us</span>
+      <h2>Built for<br/><em>Residents Like You</em></h2>
+      <div class="feature-list">
+        <div class="feature-item"><span>🚗</span><span>Dedicated car parking — cars only</span></div>
+        <div class="feature-item"><span>🌙</span><span>Open 24 hours — access your car anytime</span></div>
+        <div class="feature-item"><span>📍</span><span>Alongside Govt. Water Supply &amp; Civil Hospital, Tando Allahyar Road</span></div>
+        <div class="feature-item"><span>📝</span><span>Formal vehicle registration &amp; lot assignment</span></div>
+        <div class="feature-item"><span>💵</span><span>Affordable daily and monthly plans</span></div>
+        <div class="feature-item"><span>✅</span><span>Secure, on-site managed parking facility</span></div>
+        <div class="feature-item"><span>♿</span><span>Wheelchair accessible entrance &amp; parking</span></div>
+        <div class="feature-item"><span>⭐</span><span>5-star rated on Google Maps</span></div>
+      </div>
+    </div>
+    <div class="big-p-display reveal">
+      <div class="p-circle">
+        <span class="p-letter">P</span>
+        <span class="p-car">🚗</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="gold-divider"/>
+
+<!-- ══════════ TEAM ══════════ -->
+<section class="team">
+  <div class="team-inner">
+    <div class="reveal">
+      <span class="section-label">Our Team</span>
+      <h2>The People Behind<br/><em>Rizvi Car Parking</em></h2>
+      <p class="team-sub">A trusted family business serving the Nasarpur community since 2021</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar">👨‍💼</div>
+        <h3>Raja Shah Rizvi</h3>
+        <span class="team-role">Owner &amp; Founder</span>
+        <p>Munwar Hussain Shah, known as Raja Shah Rizvi, founded Rizvi Car Parking in 2021 to serve Nasarpur residents with a reliable and safe parking solution.</p>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">🧑‍💼</div>
+        <h3>Syed Mehar Ali Shah</h3>
+        <span class="team-role">Elder Son</span>
+        <p>Part of the Rizvi family that owns and supports the business, ensuring the legacy of trust and service continues in the community.</p>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">👨</div>
+        <h3>Taha Hussain Shah</h3>
+        <span class="team-role">Younger Son</span>
+        <p>Part of the Rizvi family that owns and supports the business, contributing to the growth and community presence of Rizvi Car Parking.</p>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">🔑</div>
+        <h3>Viqyo Subohphoto</h3>
+        <span class="team-role">Operations Manager</span>
+        <p>Manages all day-to-day operations — from collecting monthly rents and assigning parking lots to registering vehicles and ensuring smooth access for all customers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="gold-divider"/>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section class="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <span class="section-label">Get In Touch</span>
+      <h2>Visit Us or<br/><em>Call Anytime</em></h2>
+      <p class="contact-sub">We're open 24/7 — just walk in or give us a call to reserve your spot.</p>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-card">
+        <span class="contact-card-icon">📞</span>
+        <h4>Primary Phone</h4>
+        <p class="gold">0302-2749121</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card-icon">📞</span>
+        <h4>Phone 2</h4>
+        <p class="gold">0311-8232739</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card-icon">📞</span>
+        <h4>Phone 3</h4>
+        <p class="gold">0330-2871760</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card-icon">🕐</span>
+        <h4>Opening Hours</h4>
+        <p>Open 24 Hours<br/>Mon – Sun</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card-icon">📍</span>
+        <h4>Address</h4>
+        <p>Alongside Govt. Water Supply &amp; Civil Hospital,<br/>Tando Allahyar Road, Nasarpur 70010</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card-icon">💰</span>
+        <h4>Payment</h4>
+        <p>Cash Only</p>
+      </div>
+    </div>
+    <div class="reveal">
+      <a href="https://maps.app.goo.gl/JJSvzHTPJKYR9AyTA" target="_blank" class="map-btn">
+        📍 Open in Google Maps
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-logo">Rizvi <span>Car Parking</span></div>
+  <p>Tando Allahyar Road, alongside Govt. Water Supply &amp; Civil Hospital, Nasarpur, District Tando Allahyar, Sindh 70010</p>
+  <span class="footer-since">Serving Nasarpur Since 2021</span>
+</footer>
+
+<script>
+  // Intersection Observer for scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
