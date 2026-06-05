@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rizvi-car-parking.vercel.app/sitemap.xml
